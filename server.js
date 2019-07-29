@@ -28,7 +28,7 @@ if(!isProduction) {
 }
 
 //Configure Mongoose
-mongoose.connect('mongodb+srv://pramod:QHsvpBocm9XgOUP9@cluster0-twfer.mongodb.net/sampleUserData?retryWrites=true&w=majority&authSource=admin');
+mongoose.connect('mongodb+srv://pramod:QHsvpBocm9XgOUP9@cluster0-twfer.mongodb.net/sampleUserData?retryWrites=true&w=majority&authSource=admin', { useNewUrlParser: true });
 mongoose.set('debug', true);
 
 //Models & routes
