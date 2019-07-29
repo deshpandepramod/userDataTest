@@ -8,12 +8,8 @@ const errorHandler = require('errorhandler');
 
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
-
-//PORT Details
 var port = process.env.PORT || 8080;
-
 //Configure isProduction variable
-const isProduction = process.env.NODE_ENV === 'production';
 
 //Initiate our app
 const app = express();
@@ -26,12 +22,10 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 
-if(!isProduction) {
-  app.use(errorHandler());
-}
-
+var userName = 'pramod';
 //Configure Mongoose
-mongoose.connect('mongodb+srv://pramod:QHsvpBocm9XgOUP9@cluster0-twfer.mongodb.net/sampleUserData?ssl=true&retryWrites=true&w=majority&authSource=admin', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://' + encodeURIComponent(userName)+':eBx07bf4BNV1sM5y@cluster0-twfer.mongodb.net/sampleUserData?ssl=true&retryWrites=true&w=majority&authSource=admin', { useNewUrlParser: true });
+
 mongoose.set('debug', true);
 
 //Models & routes
@@ -39,19 +33,7 @@ require('./models/Users');
 require('./config/passport');
 app.use(require('./routes'));
 
-//Error handlers & middlewares
-if(!isProduction) {
-  app.use((err, req, res) => {
-    res.status(err.status || 500);
 
-    res.json({
-      errors: {
-        message: err.message,
-        error: err,
-      },
-    });
-  });
-}
 
 app.use((err, req, res) => {
   res.status(err.status || 500);
