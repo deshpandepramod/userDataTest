@@ -24,7 +24,7 @@ app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave
 
 var userName = 'pramod';
 //Configure Mongoose
-mongoose.connect('mongodb+srv://' + encodeURIComponent(userName)+':eBx07bf4BNV1sM5y@cluster0-twfer.mongodb.net/sampleUserData?ssl=true&retryWrites=true&w=majority&authSource=admin', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://pramod:eBx07bf4BNV1sM5y@cluster0-twfer.mongodb.net/sampleUserData?ssl=true&retryWrites=true&w=majority&authSource=admin', { useNewUrlParser: true });
 
 mongoose.set('debug', true);
 
